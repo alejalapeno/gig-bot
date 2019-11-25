@@ -7,7 +7,7 @@ const interact = async ({ body: { payload } }, res) => {
 	// Payload is just a string and needs to be parsed.
 	payload = JSON.parse(payload);
 	const { trigger_id, response_url } = payload;
-	let actionName, inputValues;
+	let actionName, inputValues, messageURL
 
 	// View submissions are determined by a type in the payload rather than an action because who cares about a consistent API.
 	if (payload.type === 'view_submission') {
@@ -15,6 +15,11 @@ const interact = async ({ body: { payload } }, res) => {
 		actionName = payload.view.callback_id;
 		inputValues = normalizeInputValues(payload.view.state.values);
 		inputValues = transformInputValues(inputValues);
+	} else if (payload.callback_id) {
+		// Get the value as actionName from the action, we will use it as a key for what action to perform.
+		actionName = payload.callback_id;
+		// Compose a link to the message the action was performed on since the API doesn't just provide this.
+		messageURL = `https://${payload.team.domain}.slack.com/archives/${payload.channel.id}/p${payload.message_ts.split('.').join('')}`;
 	} else if (payload.actions) {
 		// Get the value as actionName from the action, we will use it as a key for what action to perform.
 		actionName = payload.actions[0].value;
@@ -26,6 +31,7 @@ const interact = async ({ body: { payload } }, res) => {
 		response_url,
 		payload,
 		inputValues,
+		messageURL,
 	};
 
 	// Lookup and perform the relevant action.

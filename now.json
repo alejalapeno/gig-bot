@@ -5,6 +5,8 @@
     "env": {
         "SLACK_SIGNING_SECRET": "@slack_signing_secret",
         "SLACK_BOT_OAUTH_TOKEN": "@slack_bot_oauth_token",
-        "GIG_CHANNEL_ID": "@gig_channel_id"
+        "GIG_CHANNEL_ID": "@gig_channel_id",
+        "MOD_CHANNEL_ID": "@mod_channel_id",
+        "ADMIN_CHANNEL_ID": "@admin_channel_id"
     }
 }

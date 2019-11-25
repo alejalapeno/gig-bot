@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import getUser from './getUser';
 
 // Receives context as first arg.
-const sendMessage = async(context, message, asUser = false) => {
+const sendMessage = async(context, message, asUser = false, channel = process.env.GIG_CHANNEL_ID, ...additionalArgs) => {
 	const { trigger_id } = context;
 	let userInfo = {};
 	let blocks, text;
@@ -27,13 +27,13 @@ const sendMessage = async(context, message, asUser = false) => {
 
 	return fetch('https://slack.com/api/chat.postMessage', {
 		method: 'POST',
-		body: JSON.stringify({
+		body: JSON.stringify(Object.assign({
 			trigger_id,
-			channel: process.env.GIG_CHANNEL_ID,
+			channel,
 			text,
 			...blocks,
 			...userInfo,
-		}),
+		}, ...additionalArgs)),
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${process.env.SLACK_BOT_OAUTH_TOKEN}`,
