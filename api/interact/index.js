@@ -15,7 +15,7 @@ const interact = async ({ body: { payload } }, res) => {
 		actionName = payload.view.callback_id;
 		inputValues = normalizeInputValues(payload.view.state.values);
 		inputValues = transformInputValues(inputValues);
-	} else if (payload.callback_id) {
+	} else if (payload.type === 'message_action') {
 		// Get the value as actionName from the action, we will use it as a key for what action to perform.
 		actionName = payload.callback_id;
 		// Compose a link to the message the action was performed on since the API doesn't just provide this.
