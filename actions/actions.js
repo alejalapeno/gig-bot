@@ -13,7 +13,6 @@ const getAction = (context, action) => {
 	const createModal = (...args) => createModalImport(context, ...args);
 	const sendMessage = (...args) => sendMessageImport(context, ...args);
 	const clearMessage = (...args) => clearMessageImport(context, ...args);
-	const reportPost = (channel, ...args) => sendMessage(`Post Flagged: ${context.messageURL}`, false, channel, {unfurl_links: true}, ...args);
 
 	const actionsList = {
 		offering: async () => {
@@ -34,8 +33,9 @@ const getAction = (context, action) => {
 			await sendMessage(lookingMessage, true);
 		},
 		report: async () => {
-			await reportPost(process.env.ADMIN_CHANNEL_ID);
-			await reportPost(process.env.MOD_CHANNEL_ID);
+			// Send reported messages to admin and mod channels and unfurl the preview.
+			await sendMessage(`Post Flagged: ${context.messageURL}`, false, process.env.ADMIN_CHANNEL_ID, {unfurl_links: true});
+			await sendMessage(`Post Flagged: ${context.messageURL}`, false, process.env.MOD_CHANNEL_ID, {unfurl_links: true});
 		},
 	};
 
