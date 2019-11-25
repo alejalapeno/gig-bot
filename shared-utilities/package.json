@@ -1,0 +1,9 @@
+{
+    "name": "gig-bot-shared-utilities",
+    "version": "1.0.0",
+    "license": "MIT",
+    "dependencies": {
+        "micro": "^9.3.4",
+        "tsscmp": "^1.0.6"
+    }
+}

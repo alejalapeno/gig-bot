@@ -1,0 +1,8 @@
+{
+    "name": "gig-bot-validators",
+    "version": "1.0.0",
+    "license": "MIT",
+    "dependencies": {
+        "@hapi/joi": "^16.1.7"
+    }
+}

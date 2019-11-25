@@ -1,0 +1,11 @@
+{
+    "routes": [
+        { "src": "/(.*)", "dest": "/api/$1" }
+    ],
+    "env": {
+        "SLACK_SIGNING_SECRET": "@slack_signing_secret",
+        "SLACK_BOT_OAUTH_TOKEN": "@slack_bot_oauth_token",
+        "SLACK_USER_OAUTH_TOKEN": "@slack_user_oauth_token",
+        "GIG_CHANNEL_ID": "@gig_channel_id"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "gig-bot-actions",
+    "version": "1.0.0",
+    "license": "MIT",
+    "main": "actions.js",
+    "dependencies": {
+        "node-fetch": "^2.6.0"
+    }
+}
