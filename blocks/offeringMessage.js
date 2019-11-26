@@ -28,7 +28,7 @@ const offeringMessage = (context) => {
 		`${physicalLocation ? `Location: ${physicalLocation}` : ''}`,
 		`${url ? `URL: ${url}` : ''}`,
 		`Salary: ${salary}`,
-		`${description ? `>${description}` : ''}`,
+		`${description ? `>${description.split('\n').join('\n>')}` : ''}`,
 	];
 
 	return {

@@ -29,7 +29,7 @@ const lookingMessage = (context) => {
 	};
 
 	const textLines = [
-		`${introduction ? `>${introduction}` : ''}`,
+		`${introduction ? `>${introduction.split('\n').join('\n>')}` : ''}`,
 		`${location ? `Preferred Location: *${location}*` : ''}`,
 		`${companyValues ? `I'm looking for a company that has ${oxfordConjunction(companyValues)}` : ''}`,
 		`I'm looking for work that is ${oxfordConjunction(typeOfEmployement, 'and/or')}`,
