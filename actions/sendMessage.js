@@ -2,10 +2,15 @@ import fetch from 'node-fetch';
 import getUser from './getUser';
 
 // Receives context as first arg.
-const sendMessage = async(context, message, asUser = false, channel = process.env.GIG_CHANNEL_ID, ...additionalArgs) => {
+const sendMessage = async(context, message, asUser = false, channel, ...additionalArgs) => {
 	const { trigger_id } = context;
 	let userInfo = {};
 	let blocks, text;
+
+	if(!channel) {
+		channel = context.payload.view.private_metadata;
+	}
+
 	// chat.postMessage can use a plain text response or a Slack block response,
 	// but they're under different keys in the response.
 	if (typeof message === 'function') {
@@ -17,10 +22,12 @@ const sendMessage = async(context, message, asUser = false, channel = process.en
 	if(asUser) {
 		const {user} = await getUser(context, context.payload.user.id);
 
-		const {profile: {display_name, image_48: avatar}} = user;
+		const {profile: {display_name, image_48: avatar, real_name}} = user;
+
+		const username = display_name ? display_name : real_name; 
 
 		userInfo = {
-			username: display_name,
+			username,
 			icon_url: avatar,
 		}
 	}
@@ -31,6 +38,7 @@ const sendMessage = async(context, message, asUser = false, channel = process.en
 			trigger_id,
 			channel,
 			text,
+			as_user: false,
 			...blocks,
 			...userInfo,
 		}, ...additionalArgs)),

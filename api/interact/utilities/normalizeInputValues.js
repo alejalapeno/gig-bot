@@ -14,10 +14,14 @@ const normalizeInputValues = (values) => {
 		// The values we're after change location depending on the input type.
 		const dataTypes = {
 			plain_text_input: () => inputData.value,
-			multi_static_select: () =>
-				inputData.selected_options.map((selected) => {
+			multi_static_select: () => {
+				if(!inputData.selected_options) {
+					return [];
+				}
+				return inputData.selected_options.map((selected) => {
 					return selected.value;
-				}),
+				});
+			},
 			static_select: () => inputData.selected_option.value,
 		};
 		const inputValue = dataTypes[inputData.type]();

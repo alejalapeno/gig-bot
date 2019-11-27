@@ -1,8 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 const lookingModal = (context) => {
+	let channel_id;
+	if(context.payload) {
+		channel_id = context.payload.channel.id;
+	} else {
+		channel_id = context.body.channel_id;
+	}
 	return {
 		"type": "modal",
 		"callback_id": "lookingSubmit",
+		"private_metadata": channel_id,
 		"title": {
 			"type": "plain_text",
 			"text": "Looking For A New Gig?"
@@ -35,7 +42,7 @@ const lookingModal = (context) => {
 				"element": {
 					"type": "plain_text_input",
 					"multiline": true,
-					"max_length": 500,
+					"max_length": 550,
 					"action_id": "introduction"
 				},
 				"block_id": "introduction"
