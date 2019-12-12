@@ -115,16 +115,16 @@ const lookingModal = (context) => {
 						{
 							"text": {
 								"type": "plain_text",
-								"text": "manager"
+								"text": "individual contributor"
 							},
-							"value": "manager"
+							"value": "individual contributor"
 						},
 						{
 							"text": {
 								"type": "plain_text",
-								"text": "individual contributor"
+								"text": "manager"
 							},
-							"value": "individual contributor"
+							"value": "manager"
 						}
 					],
 					"action_id": "role"
