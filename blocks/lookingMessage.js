@@ -8,6 +8,10 @@ const lookingMessage = (context) => {
 			location,
 			url,
 		},
+		userInfo: {
+			icon_url,
+			username,
+		},
 	} = context;
 
 	const oxfordConjunction = (value, conjunction = 'and') => {
@@ -28,25 +32,99 @@ const lookingMessage = (context) => {
 		return formatted;
 	};
 
-	const textLines = [
-		`${introduction ? `>${introduction.split('\n').join('\n>')}` : ''}`,
-		`${location ? `Preferred Location: *${location}*` : ''}`,
-		`${companyValues.length ? `I'm looking for a company that has ${oxfordConjunction(companyValues)}` : ''}`,
-		`I'm looking for work that is ${oxfordConjunction(typeOfEmployement, 'and/or')}`,
-		`I'm looking for a new position as a(n) ${oxfordConjunction(role, 'or')}`,
-		`${url ? `Personal Site: ${url}` : ''}`,
+	const wrapInSectionObject = (fields) => {
+		return {type: 'section', fields };
+	};
+
+	const wrapInMarkdownObject = (text) => {
+		return {type: 'mrkdwn', text };
+	};
+
+	// Slack only allows 5 max here.
+	const fieldPairs = [
+		{
+			label: 'Preferred Location:',
+			value: `*${location}*`,
+			valueCheck: location,
+		},
+		{
+			label: "I'm looking for a company that has",
+			value: oxfordConjunction(companyValues),
+			valueCheck: companyValues.length,
+		},
+		{
+			label: "I'm looking for work that is",
+			value: oxfordConjunction(typeOfEmployement, 'and/or'),
+			valueCheck: typeOfEmployement,
+		},
+		{
+			label: "I'm looking for a new position as a(n)",
+			value: oxfordConjunction(role, 'or'),
+			valueCheck: role,
+		},
+		{
+			label: 'Personal Site:',
+			value: url,
+			valueCheck: url,
+		},
 	];
 
+	const fieldsAsSections = fieldPairs.filter(({valueCheck}) => {
+		if(valueCheck) {
+			return true;
+		}
+		return false;
+	}).map((field) => {
+		const {label, value} = field;
+		const fields = [wrapInMarkdownObject(label),wrapInMarkdownObject(value)];
+		return wrapInSectionObject(fields);
+	});
+
+	const blockquoteText = (text) => {
+		return `>${text.split('\n').join('\n>')}`;
+	}
+
 	return {
-		blocks: [
+		"blocks": [
 			{
-				type: 'section',
-				text: {
-					type: 'mrkdwn',
-					text: textLines.filter((line) => line !== '').join('\n'),
-				},
+				"type": "divider"
 			},
-		],
+			{
+				"type": "section",
+				"text": {
+					"type": "mrkdwn",
+					"text": "*NEW TALENT OFFER:*"
+				}
+			},
+			{
+				"type": "divider"
+			},
+			{
+				"type": "section",
+				"accessory": {
+					"type": "image",
+					"image_url": icon_url,
+					"alt_text": "alt text for image"
+				},
+				"text": {
+					"type": "mrkdwn",
+					"text": `*${username}* (<@${context.payload.user.id}>) \n${blockquoteText(introduction)}`
+				}
+			},
+			...fieldsAsSections,
+			{
+				"type": "divider"
+			},
+			{
+				"type": "context",
+				"elements": [
+					{
+						"type": "mrkdwn",
+						"text": "Created with the `/gig_bot` command"
+					}
+				]
+			}
+		]
 	};
 };
 

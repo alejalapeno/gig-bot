@@ -1,8 +1,7 @@
 import fetch from 'node-fetch';
 import querystring from 'querystring';
 
-// Receives context as first arg.
-const getUser = (_, user) => {
+const getUser = (user) => {
 	const query = {
 		user,
 		token: process.env.SLACK_BOT_OAUTH_TOKEN,

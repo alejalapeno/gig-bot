@@ -27,15 +27,15 @@ const getAction = (context, action) => {
 			await clearMessage();
 		},
 		offeringSubmit: async () => {
-			await sendMessage(offeringMessage, true);
+			await sendMessage(offeringMessage);
 		},
 		lookingSubmit: async () => {
-			await sendMessage(lookingMessage, true);
+			await sendMessage(lookingMessage);
 		},
 		report: async () => {
 			// Send reported messages to admin and mod channels and unfurl the preview.
-			await sendMessage(`Post Flagged: ${context.messageURL}`, false, process.env.ADMIN_CHANNEL_ID, {unfurl_links: true});
-			await sendMessage(`Post Flagged: ${context.messageURL}`, false, process.env.MOD_CHANNEL_ID, {unfurl_links: true});
+			await sendMessage(`Post Flagged: ${context.messageURL}`, process.env.ADMIN_CHANNEL_ID, {unfurl_links: true});
+			await sendMessage(`Post Flagged: ${context.messageURL}`, process.env.MOD_CHANNEL_ID, {unfurl_links: true});
 		},
 	};
 

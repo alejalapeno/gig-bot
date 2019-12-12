@@ -1,3 +1,4 @@
+import getUser from './utilities/getUser';
 import getAction from '../../actions/';
 import normalizeInputValues from './utilities/normalizeInputValues';
 import transformInputValues from './utilities/transformInputValues';
@@ -25,6 +26,14 @@ const interact = async ({ body: { payload } }, res) => {
 		actionName = payload.actions[0].value;
 	}
 
+	const {user} = await getUser(payload.user.id);
+	const {profile: {display_name, image_192: avatar, real_name}} = user;
+	const username = display_name ? display_name : real_name; 
+	const userInfo = {
+		username,
+		icon_url: avatar,
+	}
+
 	// Create a shared context our actions can use.
 	const context = {
 		trigger_id,
@@ -32,6 +41,7 @@ const interact = async ({ body: { payload } }, res) => {
 		payload,
 		inputValues,
 		messageURL,
+		userInfo,
 	};
 
 	// Lookup and perform the relevant action.

@@ -93,7 +93,7 @@ const offeringModal = (context) => {
 								"type": "plain_text",
 								"text": "Full-Time"
 							},
-							"value": "FTE"
+							"value": "Full-Time"
 						},
 						{
 							"text": {
@@ -206,7 +206,6 @@ const offeringModal = (context) => {
 					"max_length": 500,
 					"action_id": "description"
 				},
-				"optional": true,
 				"block_id": "description"
 			},
 			{
