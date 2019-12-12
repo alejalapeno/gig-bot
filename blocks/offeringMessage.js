@@ -34,29 +34,33 @@ const offeringMessage = (context) => {
 	const fieldPairs = [
 		{
 			label: 'Company:',
-			value: companyName,
+			value: `*${companyName}*`,
+			valueCheck: companyName,
 		},
 		{
 			label: 'Location:',
-			value: physicalLocation,
+			value: `*${physicalLocation}*`,
+			valueCheck: physicalLocation,
 		},
 		{
 			label: 'URL:',
 			value: url,
+			valueCheck: url,
 		},
 		{
 			label: 'Salary:',
-			value: salary,
+			value: `*${salary}*`,
+			valueCheck: salary,
 		},
 	];
 
 	let fields = [];
 
 	fieldPairs.forEach((field) => {
-		const {label, value} = field;
-		if(value) {
+		const {label, value, valueCheck} = field;
+		if(valueCheck) {
 			fields.push(wrapInMarkdownObject(label));
-			fields.push(wrapInMarkdownObject(`*${value}*`));
+			fields.push(wrapInMarkdownObject(value));
 		}
 	});
 
