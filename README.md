@@ -6,11 +6,11 @@ Gig Bot is a Slack bot created to walk users through creating the perfect gig (j
 
 ### Commands
 
-* `/gig_bot` will prompt the user with the options available.
- 
-* `/gig_bot [command]`
-    + `offering` will open a modal window for posting a new gig.
-    + `looking` will open a modal window for looking for a new gig.
+-   `/gig_bot` will prompt the user with the options available.
+
+-   `/gig_bot [command]`
+    -   `offering` will open a modal window for posting a new gig.
+    -   `looking` will open a modal window for looking for a new gig.
 
 ## Contributing
 
@@ -36,9 +36,9 @@ Gig Bot takes this a step further by putting the JSON into what we call "block f
 
 Slack communicates in too many different ways through single endpoints. So Gig Bot normalizes these communications into actions determined by the `actionName`.
 
-* `/gig_bot` commands are all funneled through our `/summon` route so we use the `text` of the command as our `actionName`.
-* Interacting with interactive components in a Gig Bot message will contain the `value` attribute of the interactive component that we set, so we use it as our `actionName`.
-* Submitting a modal form will contain the `callback_id` of the form that we set so we use it as our `actionName`.
+-   `/gig_bot` commands are all funneled through our `/summon` route so we use the `text` of the command as our `actionName`.
+-   Interacting with interactive components in a Gig Bot message will contain the `value` attribute of the interactive component that we set, so we use it as our `actionName`.
+-   Submitting a modal form will contain the `callback_id` of the form that we set so we use it as our `actionName`.
 
 This allows us to setup a table of actions in `actions/actions.js` all called by the `text`,`value`, or `callback_id` we setup.
 
@@ -48,18 +48,18 @@ What do actions do? They're just functions for triggering other actions like sen
 
 Gig Bot has some utility functions setup to simplify accomplishing things in Slack.
 
-* `sendMessage(message, [asUser])`
-    + `message` "block function"
-    + `asUser` bool *(optional)*
+-   `sendMessage(message, [asUser])`
+    -   `message` "block function"
+    -   `asUser` bool _(optional)_
 
 Sends a message to the Gig channel. Ephemeral messages from Gig Bot should only be sent using the server response.
 
-* `createModal(view)`
-    + `view` "block function"
+-   `createModal(view)`
+    -   `view` "block function"
 
 Opens a Slack modal window or "view" as Slack calls them.
 
-* `clearMessage()`
+-   `clearMessage()`
 
 Deletes an ephemeral message to the user. Can only be done if the trigger action came from the ephemeral message you wish to delete.
 
@@ -68,8 +68,6 @@ Deletes an ephemeral message to the user. Can only be done if the trigger action
 #### Forms
 
 Form data sent from Slack is formed... interestingly. When you compose a form block the `action_id` and `block_id` for an input **MUST** be the same value as each other.
-
-Slack also only offers limited input types. If you wish to transform a plain text input
 
 Slack also only offers limited input types, in `transformInputValues.js` we can define transformations for inputs such as converting a plain text value into an array using comma separated values or converting a select value to a boolean.
 
@@ -84,9 +82,11 @@ If you want to add/edit new messages, modals, commands then editing/creating the
 ### Required Slack App Dashboard Settings
 
 #### Required Scopes:
+
 `bot`, `chat:write:bot`, `chat:write:user`, `commands`
 
 #### Slash Commands:
+
 Command: `/gig_bot`
 
 Request URL: `[apiURL]/summon/`
@@ -99,11 +99,11 @@ Request URL: `[apiURL]/interact/`
 
 ## TODO:
 
-* Hookup input validators
-    + Error responses back to slack per field
-* Unit tests with mocked integration
-* Integration tests (?)
-* Server errors
-    + Slack wants a 200 back as long as the request was received
-    + Custom error message responses possible
-    + External logging (we're serverless here)
+-   Hookup input validators
+    -   Error responses back to slack per field
+-   Unit tests with mocked integration
+-   Integration tests (?)
+-   Server errors
+    -   Slack wants a 200 back as long as the request was received
+    -   Custom error message responses possible
+    -   External logging (we're serverless here)
