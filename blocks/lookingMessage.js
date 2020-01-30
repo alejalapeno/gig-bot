@@ -5,6 +5,7 @@ const lookingMessage = (context) => {
 			typeOfEmployement,
 			introduction,
 			companyValues,
+			topTech,
 			location,
 			url,
 		},
@@ -63,6 +64,11 @@ const lookingMessage = (context) => {
 			label: "I'm looking for a new position as a(n)",
 			value: oxfordConjunction(role, 'or'),
 			valueCheck: role,
+		},
+		{
+			label: 'I aspire to work with',
+			value: oxfordConjunction(topTech),
+			valueCheck: topTech,
 		},
 		{
 			label: 'Personal Site:',
