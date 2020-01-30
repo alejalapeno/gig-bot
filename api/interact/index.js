@@ -8,31 +8,46 @@ const interact = async ({ body: { payload } }, res) => {
 	// Payload is just a string and needs to be parsed.
 	payload = JSON.parse(payload);
 	const { trigger_id, response_url } = payload;
-	let actionName, inputValues, messageURL
 
-	// View submissions are determined by a type in the payload rather than an action because who cares about a consistent API.
-	if (payload.type === 'view_submission') {
-		// Get the callback_id as actionName from the view, we will use it as a key for what action to perform.
-		actionName = payload.view.callback_id;
-		inputValues = normalizeInputValues(payload.view.state.values);
-		inputValues = transformInputValues(inputValues);
-	} else if (payload.type === 'message_action') {
-		// Get the value as actionName from the action, we will use it as a key for what action to perform.
-		actionName = payload.callback_id;
-		// Compose a link to the message the action was performed on since the API doesn't just provide this.
-		messageURL = `https://${payload.team.domain}.slack.com/archives/${payload.channel.id}/p${payload.message_ts.split('.').join('')}`;
-	} else if (payload.actions) {
-		// Get the value as actionName from the action, we will use it as a key for what action to perform.
-		actionName = payload.actions[0].value;
-	}
+	const payloadDeterminations = (type) => {
+		// These are functions since the objects they use don't exist on every payload,
+		// Could be replaced with optional chaining once supported
+		const types = {
+			'view_submission': () => {
+				return {
+					// Get the callback_id as actionName from the view, we will use it as a key for what action to perform.
+					actionName: payload.view.callback_id,
+					inputValues: transformInputValues(
+						normalizeInputValues(payload.view.state.values),
+					),
+				};
+			},
+			'message_action': () => {
+				return {
+					// Get the value as actionName from the callback_id, we will use it as a key for what action to perform.
+					actionName: payload.callback_id,
+					// Compose a link to the message the action was performed on since the API doesn't just provide this.
+					messageURL: `https://${
+						payload.team.domain
+					}.slack.com/archives/${
+						payload.channel.id
+					}/p${payload.message_ts.split('.').join('')}`,
+				};
+			},
+			'block_actions': () => {
+				return {
+					// Get the value as actionName from the action, we will use it as a key for what action to perform.
+					actionName: payload.actions[0].value,
+				};
+			},
+		};
+		return types[type]();
+	};
 
-	const {user} = await getUser(payload.user.id);
-	const {profile: {display_name, image_192: avatar, real_name}} = user;
-	const username = display_name ? display_name : real_name; 
-	const userInfo = {
-		username,
-		icon_url: avatar,
-	}
+	const { actionName, inputValues, messageURL } = payloadDeterminations(
+		payload.type,
+	);
+	const { user } = await getUser(payload.user.id);
 
 	// Create a shared context our actions can use.
 	const context = {
@@ -41,7 +56,7 @@ const interact = async ({ body: { payload } }, res) => {
 		payload,
 		inputValues,
 		messageURL,
-		userInfo,
+		user,
 	};
 
 	// Lookup and perform the relevant action.

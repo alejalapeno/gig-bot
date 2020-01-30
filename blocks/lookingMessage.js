@@ -8,9 +8,9 @@ const lookingMessage = (context) => {
 			location,
 			url,
 		},
-		userInfo: {
-			icon_url,
-			username,
+		user: {
+			id,
+			profile: { display_name, real_name },
 		},
 	} = context;
 
@@ -18,11 +18,13 @@ const lookingMessage = (context) => {
 		let formatted = value.map((item) => {
 			return `*${item}*`;
 		});
-		if(formatted.length > 1) {
+		if (formatted.length > 1) {
 			// Conjugate if more than one item
-			formatted[formatted.length - 1] = `${conjunction} ${formatted[formatted.length - 1]}`;
+			formatted[formatted.length - 1] = `${conjunction} ${
+				formatted[formatted.length - 1]
+			}`;
 		}
-		if(formatted.length > 2) {
+		if (formatted.length > 2) {
 			// Oxford comma if more than 2 items
 			formatted = formatted.join(', ');
 		} else {
@@ -33,11 +35,11 @@ const lookingMessage = (context) => {
 	};
 
 	const wrapInSectionObject = (fields) => {
-		return {type: 'section', fields };
+		return { type: 'section', fields };
 	};
 
 	const wrapInMarkdownObject = (text) => {
-		return {type: 'mrkdwn', text };
+		return { type: 'mrkdwn', text };
 	};
 
 	// Slack only allows 5 max here.
@@ -69,62 +71,64 @@ const lookingMessage = (context) => {
 		},
 	];
 
-	const fieldsAsSections = fieldPairs.filter(({valueCheck}) => {
-		if(valueCheck) {
-			return true;
-		}
-		return false;
-	}).map((field) => {
-		const {label, value} = field;
-		const fields = [wrapInMarkdownObject(label),wrapInMarkdownObject(value)];
-		return wrapInSectionObject(fields);
-	});
+	const fieldsAsSections = fieldPairs
+		.filter(({ valueCheck }) => {
+			if (valueCheck) {
+				return true;
+			}
+			return false;
+		})
+		.map((field) => {
+			const { label, value } = field;
+			const fields = [
+				wrapInMarkdownObject(label),
+				wrapInMarkdownObject(value),
+			];
+			return wrapInSectionObject(fields);
+		});
 
 	const blockquoteText = (text) => {
 		return `>${text.split('\n').join('\n>')}`;
-	}
+	};
 
 	return {
-		"blocks": [
+		'blocks': [
 			{
-				"type": "divider"
+				'type': 'divider',
 			},
 			{
-				"type": "section",
-				"text": {
-					"type": "mrkdwn",
-					"text": "*NEW TALENT OFFER:*"
-				}
-			},
-			{
-				"type": "divider"
-			},
-			{
-				"type": "section",
-				"accessory": {
-					"type": "image",
-					"image_url": icon_url,
-					"alt_text": "alt text for image"
+				'type': 'section',
+				'text': {
+					'type': 'mrkdwn',
+					'text': '*NEW TALENT OFFER:*',
 				},
-				"text": {
-					"type": "mrkdwn",
-					"text": `*${username}* (<@${context.payload.user.id}>) \n${blockquoteText(introduction)}`
-				}
+			},
+			{
+				'type': 'divider',
+			},
+			{
+				'type': 'section',
+				'text': {
+					'type': 'mrkdwn',
+					'text': `*${
+						display_name ? display_name : real_name
+					}* (<@${id}>) \n${blockquoteText(introduction)}`,
+				},
 			},
 			...fieldsAsSections,
 			{
-				"type": "divider"
+				'type': 'divider',
 			},
 			{
-				"type": "context",
-				"elements": [
+				'type': 'context',
+				'elements': [
 					{
-						"type": "mrkdwn",
-						"text": "Created with the `/gig_bot` command"
-					}
-				]
-			}
-		]
+						'type': 'mrkdwn',
+						'text': 'Created with the `/gig_bot` command',
+					},
+				],
+			},
+		],
 	};
 };
 

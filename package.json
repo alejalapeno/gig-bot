@@ -1,28 +1,28 @@
 {
-  "name": "gig-bot",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "private": true,
-  "dependencies": {},
-  "workspaces": [
-    "api/summon",
-    "api/interact",
-    "shared-utilities",
-    "actions",
-    "validators"
-  ],
-  "devDependencies": {
-    "eslint": "^6.7.0",
-    "eslint-config-prettier": "^6.7.0",
-    "husky": "^3.1.0",
-    "now": "^16.5.2",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1"
-  },
-  "scripts": {
-    "start": "now dev",
-    "deploy": "now --prod"
-  },
-  "author": "Alexander Dreith (https://dreith.com)"
+	"name": "gig-bot",
+	"version": "1.0.1",
+	"main": "index.js",
+	"license": "MIT",
+	"private": true,
+	"dependencies": {},
+	"workspaces": [
+		"api/summon",
+		"api/interact",
+		"shared-utilities",
+		"actions",
+		"validators"
+	],
+	"devDependencies": {
+		"eslint": "6.8.0",
+		"eslint-config-prettier": "6.10.0",
+		"husky": "3.1.0",
+		"now": "16.7.3",
+		"prettier": "1.19.1",
+		"pretty-quick": "2.0.1"
+	},
+	"scripts": {
+		"start": "now dev --listen 8080",
+		"deploy": "now --prod"
+	},
+	"author": "Alexander Dreith (https://dreith.com)"
 }

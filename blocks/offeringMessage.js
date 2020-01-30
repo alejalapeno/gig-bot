@@ -10,9 +10,9 @@ const offeringMessage = (context) => {
 			url,
 			salary,
 		},
-		userInfo: {
-			icon_url,
-			username,
+		user: {
+			id,
+			profile: { display_name, real_name },
 		},
 	} = context;
 
@@ -27,7 +27,7 @@ const offeringMessage = (context) => {
 	};
 
 	const wrapInMarkdownObject = (text) => {
-		return {type: 'mrkdwn', text };
+		return { type: 'mrkdwn', text };
 	};
 
 	// Slack only allows 5 max here.
@@ -57,8 +57,8 @@ const offeringMessage = (context) => {
 	let fields = [];
 
 	fieldPairs.forEach((field) => {
-		const {label, value, valueCheck} = field;
-		if(valueCheck) {
+		const { label, value, valueCheck } = field;
+		if (valueCheck) {
 			fields.push(wrapInMarkdownObject(label));
 			fields.push(wrapInMarkdownObject(value));
 		}
@@ -66,56 +66,53 @@ const offeringMessage = (context) => {
 
 	const blockquoteText = (text) => {
 		return `>${text.split('\n').join('\n>')}`;
-	}
+	};
 
 	return {
-		"blocks": [
+		'blocks': [
 			{
-				"type": "divider"
+				'type': 'divider',
 			},
 			{
-				"type": "section",
-				"text": {
-					"type": "mrkdwn",
-					"text": "*NEW GIG OFFER:*"
-				}
-			},
-			{
-				"type": "divider"
-			},
-			{
-				"type": "section",
-				"accessory": {
-					"type": "image",
-					"image_url": icon_url,
-					"alt_text": "alt text for image"
+				'type': 'section',
+				'text': {
+					'type': 'mrkdwn',
+					'text': '*NEW GIG OFFER:*',
 				},
-				"text": {
-					"type": "mrkdwn",
-					"text": `*${username}* (<@${context.payload.user.id}>) \n*${jobTitle}* — ${keywordTags()}`
+			},
+			{
+				'type': 'divider',
+			},
+			{
+				'type': 'section',
+				'text': {
+					'type': 'mrkdwn',
+					'text': `*${
+						display_name ? display_name : real_name
+					}* (<@${id}>) \n*${jobTitle}* — ${keywordTags()}`,
 				},
-				fields
+				fields,
 			},
 			{
-				"type": "section",
-				"text": {
-					"type": "mrkdwn",
-					"text": blockquoteText(description)
-				}
+				'type': 'section',
+				'text': {
+					'type': 'mrkdwn',
+					'text': blockquoteText(description),
+				},
 			},
 			{
-				"type": "divider"
+				'type': 'divider',
 			},
 			{
-				"type": "context",
-				"elements": [
+				'type': 'context',
+				'elements': [
 					{
-						"type": "mrkdwn",
-						"text": "Created with the `/gig_bot` command"
-					}
-				]
-			}
-		]
+						'type': 'mrkdwn',
+						'text': 'Created with the `/gig_bot` command',
+					},
+				],
+			},
+		],
 	};
 };
 
