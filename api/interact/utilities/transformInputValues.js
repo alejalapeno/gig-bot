@@ -5,8 +5,8 @@
 const getTransformation = (name, value) => {
 	const transformations = {
 		isRemote: () => stringToBool(value),
-		topTech: () => commaSeparatedStringToArray(value, 3),
-		companyValues: () => value.slice(0,3),
+		topTech: () => commaSeparatedStringToArray(value, 5),
+		companyValues: () => value.slice(0, 3),
 	};
 	return transformations[name] ? transformations[name]() : value;
 };
