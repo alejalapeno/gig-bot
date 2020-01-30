@@ -1,5 +1,5 @@
-import normalizeInputValues from './utilities/normalizeInputValues';
-import transformInputValues from './utilities/transformInputValues';
+import normalizeInputValues from '../utilities/normalizeInputValues';
+import transformInputValues from '../utilities/transformInputValues';
 
 const payloadDeterminations = (payload) => {
 	// These are functions since the objects they use don't exist on every payload,

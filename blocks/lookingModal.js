@@ -201,7 +201,7 @@ const lookingModal = (context) => {
 				'type': 'input',
 				'label': {
 					'type': 'plain_text',
-					'text': 'what tech would you like to work with?',
+					'text': 'What tech would you like to work with?',
 				},
 				'hint': {
 					'type': 'plain_text',

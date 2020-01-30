@@ -7,6 +7,7 @@ const offeringMessage = (context) => {
 			description,
 			companyName,
 			physicalLocation,
+			jobStack,
 			url,
 			salary,
 		},
@@ -15,6 +16,26 @@ const offeringMessage = (context) => {
 			profile: { display_name, real_name },
 		},
 	} = context;
+
+	const oxfordConjunction = (value, conjunction = 'and') => {
+		let formatted = value.map((item) => {
+			return `*${item}*`;
+		});
+		if (formatted.length > 1) {
+			// Conjugate if more than one item
+			formatted[formatted.length - 1] = `${conjunction} ${
+				formatted[formatted.length - 1]
+			}`;
+		}
+		if (formatted.length > 2) {
+			// Oxford comma if more than 2 items
+			formatted = formatted.join(', ');
+		} else {
+			// Space between if less than 2 items
+			formatted = formatted.join(' ');
+		}
+		return formatted;
+	};
 
 	const keywordTags = () => {
 		let tagsArray = typeOfEmployement.map((type) => {
@@ -41,6 +62,11 @@ const offeringMessage = (context) => {
 			label: 'Location:',
 			value: `*${physicalLocation}*`,
 			valueCheck: physicalLocation,
+		},
+		{
+			label: 'Stack includes:',
+			value: oxfordConjunction(jobStack),
+			valueCheck: jobStack,
 		},
 		{
 			label: 'URL:',
