@@ -98,11 +98,21 @@ Command: `/gig_bot`
 
 Request URL: `[apiURL]/summon/`
 
-#### Interactivity
+#### Interactivity:
 
 Interactivity must be toggled `On`.
 
 Request URL: `[apiURL]/interact/`
+
+#### Event Subscriptions:
+
+Enable Events must be toggled `On`.
+
+Request URL: `[apiURL]/publish-home/`
+
+**Subscribe to workspace events:**
+
+`app_home_opened`
 
 ## TODO:
 

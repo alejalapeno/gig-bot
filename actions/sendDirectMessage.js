@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import sendMessage from './sendMessage';
 
-// Receives context as first arg.
 const sendDirectMessage = async (context, message, ...additionalArgs) => {
 	const { channel } = await fetch(
 		'https://slack.com/api/conversations.open',
