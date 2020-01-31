@@ -55,6 +55,12 @@ Gig Bot has some utility functions setup to simplify accomplishing things in Sla
 
 Sends a message to the current channel. Ephemeral messages from Gig Bot should only be sent using the server response.
 
+-   `sendDirectMessage(message, [additionalArgs])`
+    -   `message` "block function"
+    -   `additionalArgs` object of additional slack API parameters to include in the request body _(optional)_
+
+Sends a direct message between the user and Gig Bot. (Is a proxy for `sendMessage` that opens a DM channel.)
+
 -   `createModal(view)`
     -   `view` "block function"
 
