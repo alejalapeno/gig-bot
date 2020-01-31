@@ -43,7 +43,6 @@ const lookingMessage = (context) => {
 		return { type: 'mrkdwn', text };
 	};
 
-	// Slack only allows 5 max here.
 	const fieldPairs = [
 		{
 			label: 'Preferred Location:',

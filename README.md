@@ -1,6 +1,6 @@
 # Gig Bot
 
-Gig Bot is a Slack bot created to walk users through creating the perfect gig (job) post. Through a few simple interactions and question answering Gig Bot will format a post for the user and send the post to the appropriate channel as the user themselves.
+Gig Bot is a Slack bot created to walk users through creating the perfect gig (job) post. Through a few simple interactions and question answering Gig Bot will format a post for the user and send the post to the current channel.
 
 ## How to Use
 
@@ -48,11 +48,12 @@ What do actions do? They're just functions for triggering other actions like sen
 
 Gig Bot has some utility functions setup to simplify accomplishing things in Slack.
 
--   `sendMessage(message, [asUser])`
+-   `sendMessage(message, [channel], [additionalArgs])`
     -   `message` "block function"
-    -   `asUser` bool _(optional)_
+    -   `channel` slack channel id string _(optional)_
+    -   `additionalArgs` object of additional slack API parameters to include in the request body _(optional)_
 
-Sends a message to the Gig channel. Ephemeral messages from Gig Bot should only be sent using the server response.
+Sends a message to the current channel. Ephemeral messages from Gig Bot should only be sent using the server response.
 
 -   `createModal(view)`
     -   `view` "block function"
@@ -77,7 +78,7 @@ Received input values can be accessed when composing a block function from `cont
 
 If you need to add new unsupported functionality you'll need to enhance Gig Bot with new functions or open a new request ticket.
 
-If you want to add/edit new messages, modals, commands then editing/creating the relevant actions, block functions, and/or input transformations is all you need to do.
+If you want to add/edit new messages, modals, and/or commands then editing/creating the relevant actions, block functions, and/or input transformations is all you need to do.
 
 ### Required Slack App Dashboard Settings
 

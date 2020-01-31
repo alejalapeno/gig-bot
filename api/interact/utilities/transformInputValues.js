@@ -25,6 +25,9 @@ const stringToBool = (value) => {
 };
 
 const commaSeparatedStringToArray = (value, limit) => {
+	if (!value) {
+		return [];
+	}
 	return value.split(',', limit);
 };
 
