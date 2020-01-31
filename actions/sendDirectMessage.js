@@ -19,7 +19,7 @@ const sendDirectMessage = async (context, message, ...additionalArgs) => {
 		return response.json();
 	});
 
-	await sendMessage(context, message, channel.id, ...additionalArgs);
+	return sendMessage(context, message, channel.id, ...additionalArgs);
 };
 
 export default sendDirectMessage;

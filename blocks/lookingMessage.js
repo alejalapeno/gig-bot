@@ -67,7 +67,7 @@ const lookingMessage = (context) => {
 		{
 			label: 'I aspire to work with',
 			value: oxfordConjunction(topTech),
-			valueCheck: topTech,
+			valueCheck: topTech.length,
 		},
 		{
 			label: 'Personal Site:',

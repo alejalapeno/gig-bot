@@ -66,7 +66,7 @@ const offeringMessage = (context) => {
 		{
 			label: 'Stack includes:',
 			value: oxfordConjunction(jobStack),
-			valueCheck: jobStack,
+			valueCheck: jobStack.length,
 		},
 		{
 			label: 'URL:',
