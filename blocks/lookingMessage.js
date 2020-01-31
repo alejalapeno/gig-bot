@@ -2,7 +2,7 @@ const lookingMessage = (context) => {
 	const {
 		inputValues: {
 			role,
-			typeOfEmployement,
+			typeOfEmployment,
 			introduction,
 			companyValues,
 			topTech,
@@ -56,8 +56,8 @@ const lookingMessage = (context) => {
 		},
 		{
 			label: "I'm looking for work that is",
-			value: oxfordConjunction(typeOfEmployement, 'and/or'),
-			valueCheck: typeOfEmployement,
+			value: oxfordConjunction(typeOfEmployment, 'and/or'),
+			valueCheck: typeOfEmployment,
 		},
 		{
 			label: "I'm looking for a new position as a(n)",

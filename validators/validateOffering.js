@@ -5,7 +5,7 @@ const schema = {
 	jobTitle: Joi.string().required(),
 	companyName: Joi.string(),
 	physicalLocation: Joi.string(),
-	typeOfEmployement: Joi.array()
+	typeOfEmployment: Joi.array()
 		.items(Joi.string())
 		.required(),
 	url: Joi.string().domain({ tlds: false }),

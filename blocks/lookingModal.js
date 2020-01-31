@@ -65,7 +65,7 @@ const lookingModal = (context) => {
 				'type': 'input',
 				'label': {
 					'type': 'plain_text',
-					'text': 'What types of employement are you looking for?',
+					'text': 'What types of employment are you looking for?',
 				},
 				'element': {
 					'type': 'multi_static_select',
@@ -96,9 +96,9 @@ const lookingModal = (context) => {
 							'value': 'part-time',
 						},
 					],
-					'action_id': 'typeOfEmployement',
+					'action_id': 'typeOfEmployment',
 				},
-				'block_id': 'typeOfEmployement',
+				'block_id': 'typeOfEmployment',
 			},
 			{
 				'type': 'input',

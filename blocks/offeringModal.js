@@ -79,7 +79,7 @@ const offeringModal = (context) => {
 				'type': 'input',
 				'label': {
 					'type': 'plain_text',
-					'text': 'Type of Employement',
+					'text': 'Type of Employment',
 				},
 				'element': {
 					'type': 'multi_static_select',
@@ -110,9 +110,9 @@ const offeringModal = (context) => {
 							'value': 'Part-Time',
 						},
 					],
-					'action_id': 'typeOfEmployement',
+					'action_id': 'typeOfEmployment',
 				},
-				'block_id': 'typeOfEmployement',
+				'block_id': 'typeOfEmployment',
 			},
 			{
 				'type': 'input',

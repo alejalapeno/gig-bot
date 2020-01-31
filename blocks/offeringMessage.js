@@ -2,7 +2,7 @@ const offeringMessage = (context) => {
 	const {
 		inputValues: {
 			jobTitle,
-			typeOfEmployement,
+			typeOfEmployment,
 			isRemote,
 			description,
 			companyName,
@@ -38,7 +38,7 @@ const offeringMessage = (context) => {
 	};
 
 	const keywordTags = () => {
-		let tagsArray = typeOfEmployement.map((type) => {
+		let tagsArray = typeOfEmployment.map((type) => {
 			return `\`[${type}]\``;
 		});
 		if (isRemote) {
