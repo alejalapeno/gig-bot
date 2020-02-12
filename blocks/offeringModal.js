@@ -27,7 +27,7 @@ const offeringModal = (context) => {
 				'type': 'section',
 				'text': {
 					'type': 'plain_text',
-					'text': `:wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you, as you!`,
+					'text': `:wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you!`,
 				},
 			},
 			{
@@ -116,37 +116,20 @@ const offeringModal = (context) => {
 			},
 			{
 				'type': 'input',
+				'optional': true,
 				'label': {
 					'type': 'plain_text',
-					'text': 'Should this gig be marked as fully remote?',
+					'text': 'Is this a remote gig?',
 				},
 				'element': {
-					'type': 'static_select',
-					'placeholder': {
-						'type': 'plain_text',
-						'text': 'Select best that applies',
-					},
-					'initial_option': {
-						'text': {
-							'type': 'plain_text',
-							'text': 'No',
-						},
-						'value': 'false',
-					},
+					'type': 'checkboxes',
 					'options': [
 						{
 							'text': {
 								'type': 'plain_text',
-								'text': 'Yes - Full Remote',
+								'text': 'This gig is fully remote',
 							},
-							'value': 'true',
-						},
-						{
-							'text': {
-								'type': 'plain_text',
-								'text': 'No',
-							},
-							'value': 'false',
+							'value': 'isRemote',
 						},
 					],
 					'action_id': 'isRemote',

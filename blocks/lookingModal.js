@@ -28,7 +28,7 @@ const lookingModal = (context) => {
 				'text': {
 					'type': 'plain_text',
 					'text':
-						":wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you, as you!",
+						":wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you!",
 				},
 			},
 			{

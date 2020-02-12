@@ -1,9 +1,10 @@
 {
-    "name": "gig-bot-shared-utilities",
-    "version": "1.0.0",
-    "license": "MIT",
-    "dependencies": {
-        "micro": "^9.3.4",
-        "tsscmp": "^1.0.6"
-    }
+	"name": "gig-bot-shared-utilities",
+	"version": "1.0.0",
+	"license": "MIT",
+	"dependencies": {
+		"mongodb": "^3.5.2",
+		"micro": "^9.3.4",
+		"tsscmp": "^1.0.6"
+	}
 }

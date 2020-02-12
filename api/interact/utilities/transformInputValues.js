@@ -28,7 +28,9 @@ const commaSeparatedStringToArray = (value, limit) => {
 	if (!value) {
 		return [];
 	}
-	return value.split(',', limit);
+	const entries = value.split(',', limit);
+	const whitespaceTrimmedEntries = entries.map((entry) => entry.trim());
+	return whitespaceTrimmedEntries;
 };
 
 export default transformInputValues;
