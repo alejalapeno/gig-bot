@@ -105,7 +105,7 @@ const lookingMessage = (context) => {
 				'type': 'section',
 				'text': {
 					'type': 'mrkdwn',
-					'text': '*NEW TALENT OFFER:*',
+					'text': '*TALENT offer:*',
 				},
 			},
 			{

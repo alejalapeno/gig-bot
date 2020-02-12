@@ -103,7 +103,7 @@ const offeringMessage = (context) => {
 				'type': 'section',
 				'text': {
 					'type': 'mrkdwn',
-					'text': '*NEW GIG OFFER:*',
+					'text': '*GIG offer:*',
 				},
 			},
 			{
