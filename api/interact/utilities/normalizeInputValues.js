@@ -15,7 +15,7 @@ const normalizeInputValues = (values) => {
 		const dataTypes = {
 			plain_text_input: () => inputData.value,
 			multi_static_select: () => {
-				if(!inputData.selected_options) {
+				if (!inputData.selected_options) {
 					return [];
 				}
 				return inputData.selected_options.map((selected) => {
@@ -23,6 +23,14 @@ const normalizeInputValues = (values) => {
 				});
 			},
 			static_select: () => inputData.selected_option.value,
+			checkboxes: () => {
+				if (!inputData.selected_options) {
+					return [];
+				}
+				return inputData.selected_options.map((selected) => {
+					return selected.value;
+				});
+			},
 		};
 		const inputValue = dataTypes[inputData.type]();
 

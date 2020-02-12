@@ -2,7 +2,7 @@ import connectToDB from '../shared-utilities/connectToDB';
 
 const storeSubmission = async (
 	{
-		inputValues,
+		inputValues: values,
 		user: {
 			id,
 			profile: { display_name, real_name },
@@ -13,7 +13,7 @@ const storeSubmission = async (
 	const name = display_name ? display_name : real_name;
 
 	const document = {
-		inputValues,
+		values,
 		user: {
 			id,
 			name,

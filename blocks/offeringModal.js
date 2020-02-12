@@ -129,7 +129,7 @@ const offeringModal = (context) => {
 								'type': 'plain_text',
 								'text': 'This gig is fully remote',
 							},
-							'value': 'isRemote',
+							'value': 'true',
 						},
 					],
 					'action_id': 'isRemote',
