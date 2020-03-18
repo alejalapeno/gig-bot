@@ -49,6 +49,28 @@ const offeringModal = (context) => {
 				'type': 'input',
 				'label': {
 					'type': 'plain_text',
+					'text': 'Thumbnail Image URL',
+				},
+				'hint': {
+					'type': 'plain_text',
+					'text': 'Image will be cropped to 1:1 square ratio.',
+				},
+				'element': {
+					'type': 'plain_text_input',
+					'action_id': 'thumbnailURL',
+					'placeholder': {
+						'type': 'plain_text',
+						'text':
+							'Spice up your post with an image of your choice!',
+					},
+				},
+				'optional': true,
+				'block_id': 'thumbnailURL',
+			},
+			{
+				'type': 'input',
+				'label': {
+					'type': 'plain_text',
 					'text': 'Company Name',
 				},
 				'element': {
@@ -82,11 +104,7 @@ const offeringModal = (context) => {
 					'text': 'Type of Employment',
 				},
 				'element': {
-					'type': 'multi_static_select',
-					'placeholder': {
-						'type': 'plain_text',
-						'text': 'Select all that apply',
-					},
+					'type': 'checkboxes',
 					'options': [
 						{
 							'text': {

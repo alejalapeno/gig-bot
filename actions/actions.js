@@ -3,7 +3,6 @@ import createModalImport from './createModal';
 import clearMessageImport from './clearMessage';
 import sendMessageImport from './sendMessage';
 import sendDirectMessageImport from './sendDirectMessage';
-import storeSubmissionImport from './storeSubmission';
 // Blocks
 import offeringModal from '../blocks/offeringModal';
 import lookingModal from '../blocks/lookingModal';
@@ -18,8 +17,6 @@ const getAction = (context, action) => {
 	const sendDirectMessage = (...args) =>
 		sendDirectMessageImport(context, ...args);
 	const clearMessage = (...args) => clearMessageImport(context, ...args);
-	const storeSubmission = (...args) =>
-		storeSubmissionImport(context, ...args);
 
 	const actionsList = {
 		offering: async () => {
@@ -35,11 +32,9 @@ const getAction = (context, action) => {
 		},
 		offeringSubmit: async () => {
 			await sendMessage(offeringMessage);
-			await storeSubmission('offering');
 		},
 		lookingSubmit: async () => {
 			await sendMessage(lookingMessage);
-			await storeSubmission('looking');
 		},
 		report: async () => {
 			// Send reported messages to admin and mod channels and unfurl the preview.
