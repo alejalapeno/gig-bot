@@ -1,6 +1,7 @@
 const lookingMessage = (context) => {
 	const {
 		inputValues: {
+			thumbnailURL,
 			role,
 			typeOfEmployment,
 			introduction,
@@ -96,6 +97,14 @@ const lookingMessage = (context) => {
 		return `>${text.split('\n').join('\n>')}`;
 	};
 
+	const accessory = thumbnailURL
+		? {
+				'type': 'image',
+				'image_url': thumbnailURL,
+				'alt_text': 'thumbnail',
+		  }
+		: undefined;
+
 	return {
 		'blocks': [
 			{
@@ -119,6 +128,7 @@ const lookingMessage = (context) => {
 						display_name ? display_name : real_name
 					}* (<@${id}>) \n${blockquoteText(introduction)}`,
 				},
+				accessory,
 			},
 			...fieldsAsSections,
 			{

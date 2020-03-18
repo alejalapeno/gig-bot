@@ -27,7 +27,7 @@ const offeringModal = (context) => {
 				'type': 'section',
 				'text': {
 					'type': 'plain_text',
-					'text': `:wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you, as you!`,
+					'text': `:wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you!`,
 				},
 			},
 			{
@@ -44,6 +44,28 @@ const offeringModal = (context) => {
 					'action_id': 'jobTitle',
 				},
 				'block_id': 'jobTitle',
+			},
+			{
+				'type': 'input',
+				'label': {
+					'type': 'plain_text',
+					'text': 'Thumbnail Image URL',
+				},
+				'hint': {
+					'type': 'plain_text',
+					'text': 'Image will be cropped to 1:1 square ratio.',
+				},
+				'element': {
+					'type': 'plain_text_input',
+					'action_id': 'thumbnailURL',
+					'placeholder': {
+						'type': 'plain_text',
+						'text':
+							'Spice up your post with an image of your choice!',
+					},
+				},
+				'optional': true,
+				'block_id': 'thumbnailURL',
 			},
 			{
 				'type': 'input',
@@ -82,11 +104,7 @@ const offeringModal = (context) => {
 					'text': 'Type of Employment',
 				},
 				'element': {
-					'type': 'multi_static_select',
-					'placeholder': {
-						'type': 'plain_text',
-						'text': 'Select all that apply',
-					},
+					'type': 'checkboxes',
 					'options': [
 						{
 							'text': {
@@ -116,37 +134,20 @@ const offeringModal = (context) => {
 			},
 			{
 				'type': 'input',
+				'optional': true,
 				'label': {
 					'type': 'plain_text',
-					'text': 'Should this gig be marked as fully remote?',
+					'text': 'Is this a remote gig?',
 				},
 				'element': {
-					'type': 'static_select',
-					'placeholder': {
-						'type': 'plain_text',
-						'text': 'Select best that applies',
-					},
-					'initial_option': {
-						'text': {
-							'type': 'plain_text',
-							'text': 'No',
-						},
-						'value': 'false',
-					},
+					'type': 'checkboxes',
 					'options': [
 						{
 							'text': {
 								'type': 'plain_text',
-								'text': 'Yes - Full Remote',
+								'text': 'This gig is fully remote',
 							},
 							'value': 'true',
-						},
-						{
-							'text': {
-								'type': 'plain_text',
-								'text': 'No',
-							},
-							'value': 'false',
 						},
 					],
 					'action_id': 'isRemote',

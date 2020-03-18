@@ -28,7 +28,7 @@ const lookingModal = (context) => {
 				'text': {
 					'type': 'plain_text',
 					'text':
-						":wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you, as you!",
+						":wave: Hey there!\n\nAnswer a few questions for me and I'll post the perfect gig listing to the channel for you!",
 				},
 			},
 			{
@@ -52,6 +52,28 @@ const lookingModal = (context) => {
 				'type': 'input',
 				'label': {
 					'type': 'plain_text',
+					'text': 'Thumbnail Image URL',
+				},
+				'hint': {
+					'type': 'plain_text',
+					'text': 'Image will be cropped to 1:1 square ratio.',
+				},
+				'element': {
+					'type': 'plain_text_input',
+					'action_id': 'thumbnailURL',
+					'placeholder': {
+						'type': 'plain_text',
+						'text':
+							'Spice up your post with an image of your choice!',
+					},
+				},
+				'optional': true,
+				'block_id': 'thumbnailURL',
+			},
+			{
+				'type': 'input',
+				'label': {
+					'type': 'plain_text',
 					'text': 'Preferred Location',
 				},
 				'element': {
@@ -68,11 +90,7 @@ const lookingModal = (context) => {
 					'text': 'What types of employment are you looking for?',
 				},
 				'element': {
-					'type': 'multi_static_select',
-					'placeholder': {
-						'type': 'plain_text',
-						'text': 'Select all that apply',
-					},
+					'type': 'checkboxes',
 					'options': [
 						{
 							'text': {
@@ -107,11 +125,7 @@ const lookingModal = (context) => {
 					'text': 'What type of role are you looking for?',
 				},
 				'element': {
-					'type': 'multi_static_select',
-					'placeholder': {
-						'type': 'plain_text',
-						'text': 'Select all that apply',
-					},
+					'type': 'checkboxes',
 					'options': [
 						{
 							'text': {

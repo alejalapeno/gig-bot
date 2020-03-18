@@ -2,6 +2,7 @@ const offeringMessage = (context) => {
 	const {
 		inputValues: {
 			jobTitle,
+			thumbnailURL,
 			typeOfEmployment,
 			isRemote,
 			description,
@@ -94,6 +95,14 @@ const offeringMessage = (context) => {
 		return `>${text.split('\n').join('\n>')}`;
 	};
 
+	const accessory = thumbnailURL
+		? {
+				'type': 'image',
+				'image_url': thumbnailURL,
+				'alt_text': 'thumbnail',
+		  }
+		: undefined;
+
 	return {
 		'blocks': [
 			{
@@ -118,6 +127,7 @@ const offeringMessage = (context) => {
 					}* (<@${id}>) \n*${jobTitle}* — ${keywordTags()}`,
 				},
 				fields,
+				accessory,
 			},
 			{
 				'type': 'section',

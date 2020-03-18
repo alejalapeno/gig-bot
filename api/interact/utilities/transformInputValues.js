@@ -4,7 +4,7 @@
 // or converting a select value to a boolean.
 const getTransformation = (name, value) => {
 	const transformations = {
-		isRemote: () => stringToBool(value),
+		isRemote: () => checkboxBool(value),
 		topTech: () => commaSeparatedStringToArray(value, 5),
 		jobStack: () => commaSeparatedStringToArray(value, 8),
 		companyValues: () => value.slice(0, 3),
@@ -20,6 +20,14 @@ const transformInputValues = (inputValues) => {
 	return inputValues;
 };
 
+const checkboxBool = (value) => {
+	if (!value.length) {
+		return false;
+	}
+	return true;
+};
+
+// eslint-disable-next-line no-unused-vars
 const stringToBool = (value) => {
 	return value === 'true';
 };
