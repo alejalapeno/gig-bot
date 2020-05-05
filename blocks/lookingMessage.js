@@ -108,14 +108,13 @@ const lookingMessage = (context) => {
 	return {
 		'blocks': [
 			{
-				'type': 'divider',
-			},
-			{
-				'type': 'section',
-				'text': {
-					'type': 'mrkdwn',
-					'text': '*TALENT offer:*',
+				'type': 'image',
+				'title': {
+					'type': 'plain_text',
+					'text': 'TALENT offer',
 				},
+				'image_url': 'https://i.imgur.com/7sGpsC7.png',
+				'alt_text': 'TALENT offer',
 			},
 			{
 				'type': 'divider',

@@ -106,14 +106,13 @@ const offeringMessage = (context) => {
 	return {
 		'blocks': [
 			{
-				'type': 'divider',
-			},
-			{
-				'type': 'section',
-				'text': {
-					'type': 'mrkdwn',
-					'text': '*GIG offer:*',
+				'type': 'image',
+				'title': {
+					'type': 'plain_text',
+					'text': 'GIG offer',
 				},
+				'image_url': 'https://i.imgur.com/UXDXMUE.png',
+				'alt_text': 'GIG offer',
 			},
 			{
 				'type': 'divider',
