@@ -129,7 +129,7 @@ const lookingMessage = (context) => {
 							'type': 'mrkdwn',
 							'text': `*${
 								display_name ? display_name : real_name
-							}* (<@${id}>) \n${blockquoteText(introduction)}`,
+							}* (<@${id}>) \n${introduction}`,
 						},
 						accessory,
 					},

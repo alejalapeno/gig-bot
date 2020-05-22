@@ -136,7 +136,7 @@ const offeringMessage = (context) => {
 						'type': 'section',
 						'text': {
 							'type': 'mrkdwn',
-							'text': blockquoteText(description),
+							'text': description,
 						},
 					},
 					{
