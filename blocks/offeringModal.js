@@ -224,7 +224,7 @@ const offeringModal = (context) => {
 				'element': {
 					'type': 'plain_text_input',
 					'multiline': true,
-					'max_length': 500,
+					'max_length': 1200,
 					'action_id': 'description',
 				},
 				'block_id': 'description',

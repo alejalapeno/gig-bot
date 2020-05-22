@@ -43,7 +43,7 @@ const lookingModal = (context) => {
 				'element': {
 					'type': 'plain_text_input',
 					'multiline': true,
-					'max_length': 550,
+					'max_length': 1250,
 					'action_id': 'introduction',
 				},
 				'block_id': 'introduction',

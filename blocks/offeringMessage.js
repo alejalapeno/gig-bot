@@ -104,47 +104,52 @@ const offeringMessage = (context) => {
 		: undefined;
 
 	return {
-		'blocks': [
+		'attachments': [
 			{
-				'type': 'divider',
-			},
-			{
-				'type': 'section',
-				'text': {
-					'type': 'mrkdwn',
-					'text': '*Now Hiring*',
-				},
-			},
-			{
-				'type': 'divider',
-			},
-			{
-				'type': 'section',
-				'text': {
-					'type': 'mrkdwn',
-					'text': `*${
-						display_name ? display_name : real_name
-					}* (<@${id}>) \n*${jobTitle}* — ${keywordTags()}`,
-				},
-				fields,
-				accessory,
-			},
-			{
-				'type': 'section',
-				'text': {
-					'type': 'mrkdwn',
-					'text': blockquoteText(description),
-				},
-			},
-			{
-				'type': 'divider',
-			},
-			{
-				'type': 'context',
-				'elements': [
+				'color': '#3AAE84',
+				'blocks': [
 					{
-						'type': 'mrkdwn',
-						'text': 'Created with the `/gig_bot` command',
+						'type': 'divider',
+					},
+					{
+						'type': 'section',
+						'text': {
+							'type': 'mrkdwn',
+							'text': '*Now Hiring*',
+						},
+					},
+					{
+						'type': 'divider',
+					},
+					{
+						'type': 'section',
+						'text': {
+							'type': 'mrkdwn',
+							'text': `*${
+								display_name ? display_name : real_name
+							}* (<@${id}>) \n*${jobTitle}* — ${keywordTags()}`,
+						},
+						fields,
+						accessory,
+					},
+					{
+						'type': 'section',
+						'text': {
+							'type': 'mrkdwn',
+							'text': blockquoteText(description),
+						},
+					},
+					{
+						'type': 'divider',
+					},
+					{
+						'type': 'context',
+						'elements': [
+							{
+								'type': 'mrkdwn',
+								'text': 'Created with the `/gig_bot` command',
+							},
+						],
 					},
 				],
 			},

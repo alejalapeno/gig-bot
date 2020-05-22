@@ -106,40 +106,45 @@ const lookingMessage = (context) => {
 		: undefined;
 
 	return {
-		'blocks': [
+		'attachments': [
 			{
-				'type': 'divider',
-			},
-			{
-				'type': 'section',
-				'text': {
-					'type': 'mrkdwn',
-					'text': '*Looking For Work*',
-				},
-			},
-			{
-				'type': 'divider',
-			},
-			{
-				'type': 'section',
-				'text': {
-					'type': 'mrkdwn',
-					'text': `*${
-						display_name ? display_name : real_name
-					}* (<@${id}>) \n${blockquoteText(introduction)}`,
-				},
-				accessory,
-			},
-			...fieldsAsSections,
-			{
-				'type': 'divider',
-			},
-			{
-				'type': 'context',
-				'elements': [
+				'color': '#CF0E5B',
+				'blocks': [
 					{
-						'type': 'mrkdwn',
-						'text': 'Created with the `/gig_bot` command',
+						'type': 'divider',
+					},
+					{
+						'type': 'section',
+						'text': {
+							'type': 'mrkdwn',
+							'text': '*Looking For Work*',
+						},
+					},
+					{
+						'type': 'divider',
+					},
+					{
+						'type': 'section',
+						'text': {
+							'type': 'mrkdwn',
+							'text': `*${
+								display_name ? display_name : real_name
+							}* (<@${id}>) \n${blockquoteText(introduction)}`,
+						},
+						accessory,
+					},
+					...fieldsAsSections,
+					{
+						'type': 'divider',
+					},
+					{
+						'type': 'context',
+						'elements': [
+							{
+								'type': 'mrkdwn',
+								'text': 'Created with the `/gig_bot` command',
+							},
+						],
 					},
 				],
 			},
