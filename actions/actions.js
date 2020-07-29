@@ -34,7 +34,7 @@ const getAction = (context, action) => {
 			await sendMessage(offeringMessage);
 		},
 		lookingSubmit: async () => {
-			await sendMessage(lookingMessage, null, { unfurl_links: true });
+			await sendMessage(lookingMessage);
 		},
 		report: async () => {
 			// Send reported messages to admin channel and unfurl the preview.
